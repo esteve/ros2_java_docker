@@ -1,0 +1,8 @@
+android-ndk-r13b-linux-x86_64.zip filter=lfs diff=lfs merge=lfs -text
+android-sdk_r24.4.1-linux.tgz filter=lfs diff=lfs merge=lfs -text
+android/android-ndk-r13b-linux-x86_64.zip filter=lfs diff=lfs merge=lfs -text
+android/android-sdk_r24.4.1-linux.tgz filter=lfs diff=lfs merge=lfs -text
+data/android-ndk-r13b-linux-x86_64.zip filter=lfs diff=lfs merge=lfs -text
+data/android-ndk-r14-linux-x86_64.zip filter=lfs diff=lfs merge=lfs -text
+data/android-sdk_r24.4.1-linux.tgz filter=lfs diff=lfs merge=lfs -text
+data/tools_r25.2.3-linux.zip filter=lfs diff=lfs merge=lfs -text
