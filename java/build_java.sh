@@ -30,7 +30,7 @@ if [ -z "$ROS2_JAVA_SKIP_FETCH" ]; then
   vcs import $AMENT_WS/src < ament_java.repos
   vcs custom --git --args checkout $ROS2_JAVA_BRANCH || true
   vcs export
-  vcs custom --git --args rebase origin/master
+  vcs custom --git --args rebase origin/master || true
 
   cd $ROS2_JAVA_WS
   wget https://raw.githubusercontent.com/esteve/ros2_java/$ROS2_JAVA_BRANCH/ros2_java_desktop.repos || wget https://raw.githubusercontent.com/esteve/ros2_java/master/ros2_java_desktop.repos
