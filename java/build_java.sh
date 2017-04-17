@@ -33,7 +33,11 @@ if [ -z "$ROS2_JAVA_SKIP_FETCH" ]; then
 #  vcs custom --git --args rebase origin/master || true
 
   cd $ROS2_JAVA_WS
-  wget https://raw.githubusercontent.com/esteve/ros2_java/$ROS2_JAVA_BRANCH/ros2_java_desktop.repos || wget https://raw.githubusercontent.com/esteve/ros2_java/master/ros2_java_desktop.repos
+  if [ -z "$TRAVIS" ]; then
+    wget https://raw.githubusercontent.com/esteve/ros2_java/$ROS2_JAVA_BRANCH/ros2_java_desktop.repos || wget https://raw.githubusercontent.com/esteve/ros2_java/master/ros2_java_desktop.repos
+  else
+    wget https://raw.githubusercontent.com/esteve/ros2_java/$ROS2_JAVA_BRANCH/ros2_java_desktop_travis.repos || wget https://raw.githubusercontent.com/esteve/ros2_java/master/ros2_java_desktop_travis.repos
+  fi
   vcs import $ROS2_JAVA_WS/src < ros2_java_desktop.repos
   vcs custom --git --args checkout $ROS2_JAVA_BRANCH || true
   vcs export
@@ -41,7 +45,11 @@ if [ -z "$ROS2_JAVA_SKIP_FETCH" ]; then
 #  vcs custom --git --args rebase origin/master || true
 
   cd $ROS2_JAVA_WS/src/ros2/rosidl_typesupport
-  patch -p1 < ../../ros2_java/ros2_java/rosidl_typesupport_ros2_java.patch
+  if [ -z "$TRAVIS" ]; then
+    patch -p1 < ../../ros2_java/ros2_java/rosidl_typesupport_ros2_java.patch
+  else
+    patch -p1 < ../../ros2_java/ros2_java/rosidl_typesupport_ros2_java_travis.patch
+  fi
 fi
 
 if [ -z "$ROS2_JAVA_SKIP_AMENT" ]; then
