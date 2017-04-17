@@ -1,7 +1,7 @@
 set -e
 
 ROS2_CURDIR=$PWD
-ROS2_JAVA_DIR=/home/travis/build
+ROS2_JAVA_DIR=$(test -n $TRAVIS && echo /home/travis/build || echo $ROS2_CURDIR)
 ROS2_OUTPUT_DIR=$ROS2_JAVA_DIR/output
 AMENT_WS=$ROS2_JAVA_DIR/ament_ws
 ROS2_JAVA_WS=$ROS2_JAVA_DIR/ros2_java_ws
@@ -30,7 +30,7 @@ if [ -z "$ROS2_JAVA_SKIP_FETCH" ]; then
   vcs import $AMENT_WS/src < ament_java.repos
   vcs custom --git --args checkout $ROS2_JAVA_BRANCH || true
   vcs export
-  vcs custom --git --args rebase origin/master || true
+#  vcs custom --git --args rebase origin/master || true
 
   cd $ROS2_JAVA_WS
   wget https://raw.githubusercontent.com/esteve/ros2_java/$ROS2_JAVA_BRANCH/ros2_java_desktop.repos || wget https://raw.githubusercontent.com/esteve/ros2_java/master/ros2_java_desktop.repos
@@ -38,7 +38,7 @@ if [ -z "$ROS2_JAVA_SKIP_FETCH" ]; then
   vcs custom --git --args checkout $ROS2_JAVA_BRANCH || true
   vcs export
   cd src/ros2
-  vcs custom --git --args rebase origin/master
+#  vcs custom --git --args rebase origin/master || true
 
   cd $ROS2_JAVA_WS/src/ros2/rosidl_typesupport
   patch -p1 < ../../ros2_java/ros2_java/rosidl_typesupport_ros2_java.patch

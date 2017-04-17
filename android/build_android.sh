@@ -1,7 +1,7 @@
 set -e
 
 ROS2_CURDIR=$PWD
-ROS2_JAVA_DIR=/home/travis/build
+ROS2_JAVA_DIR=$(test -n $TRAVIS && echo /home/travis/build || echo $ROS2_CURDIR)
 ROS2_OUTPUT_DIR=$ROS2_JAVA_DIR/output
 AMENT_WS=$ROS2_JAVA_DIR/ament_ws
 ROS2_ANDROID_WS=$ROS2_JAVA_DIR/ros2_android_ws
