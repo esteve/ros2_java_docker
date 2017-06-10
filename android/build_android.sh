@@ -10,11 +10,11 @@ AMENT_INSTALL_DIR=$ROS2_OUTPUT_DIR/install_isolated_ament
 ROS2_ANDROID_BUILD_DIR=$ROS2_OUTPUT_DIR/build_isolated_android
 ROS2_ANDROID_INSTALL_DIR=$ROS2_OUTPUT_DIR/install_isolated_android
 #TOOLCHAIN_FILE=/opt/android/android-ndk-r13b/build/cmake/android.toolchain.cmake
-ANDROID_NDK=/opt/android/android-ndk-r14
+ANDROID_NDK=/opt/android/android-ndk-r15
 TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake
 #ANDROID_STL=c++_shared
 ANDROID_STL=gnustl_shared
-ANDROID_TARGET=android-22
+ANDROID_TARGET=android-21
 ANDROID_ABI=armeabi-v7a
 
 mkdir -p $ROS2_JAVA_DIR
