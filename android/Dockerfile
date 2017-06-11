@@ -26,12 +26,12 @@ ENV ANDROID_HOME ${ANDROID_SDK}
 ENV PATH $PATH:$ANDROID_HOME/platform-tools/:$ANDROID_HOME/tools/
 
 # android update sdk -u does not seem to work with 'yes', work around this with a 'while' loop
-#RUN (while true;do echo 'y'; sleep 2; done)|${ANDROID_SDK}/tools/android update sdk -a -u -t ${ANDROID_TARGET},sys-img-armeabi-v7a-${ANDROID_TARGET},sys-img-x86_64-${ANDROID_TARGET},extra-android-support
+RUN yes | ${ANDROID_SDK}/tools/bin/sdkmanager --verbose "emulator" "platforms;${ANDROID_TARGET}" "system-images;${ANDROID_TARGET};default;armeabi-v7a" "system-images;${ANDROID_TARGET};default;x86_64"
 
 # Accept licenses
 RUN mkdir -p ${ANDROID_SDK}/licenses/
 RUN echo "8933bad161af4178b1185d1a37fbf41ea5269c55" | tee ${ANDROID_SDK}/licenses/android-sdk-license
 RUN echo "84831b9409646a918e30573bab4c9c91346d8abd" | tee ${ANDROID_SDK}/licenses/android-sdk-preview-license
-#RUN echo no | ${ANDROID_SDK}/tools/android create avd --force --name test --target ${ANDROID_TARGET} --abi ${ANDROID_ABI}
+RUN echo no | ${ANDROID_SDK}/tools/bin/avdmanager create avd --force --name test --package "system-images;${ANDROID_TARGET};default;${ANDROID_ABI}" --abi ${ANDROID_ABI}
 
 ADD build_android.sh /build_android.sh
