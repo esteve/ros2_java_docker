@@ -1,9 +1,10 @@
 FROM ubuntu:xenial
 MAINTAINER esteve@apache.org
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends locales
 RUN locale-gen en_US en_US.UTF-8
 RUN update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 ENV LANG en_US.UTF-8
-RUN apt-get update
 RUN apt-get install -y --no-install-recommends lsb-release software-properties-common
 RUN apt-get install -y --no-install-recommends apt-transport-https
 RUN echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -cs` main" | tee /etc/apt/sources.list.d/ros-latest.list
