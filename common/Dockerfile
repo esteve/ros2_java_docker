@@ -48,3 +48,4 @@ ENV PATH=$PATH:${JAVA_HOME}/bin:${JAVA_HOME}/jre/bin
 # RUN touch /root/.android/analytics.settings
 RUN pip3 install --upgrade pip
 RUN pip3 install vcstool flake8
+RUN apt-get install -y --no-install-recommends python3-pyparsing
