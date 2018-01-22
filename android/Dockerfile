@@ -25,11 +25,16 @@ RUN apt-get install -y --no-install-recommends lib32z1 lib32ncurses5 lib32stdc++
 ENV ANDROID_HOME ${ANDROID_SDK}
 ENV PATH $PATH:$ANDROID_HOME/platform-tools/:$ANDROID_HOME/tools/
 
-# android update sdk -u does not seem to work with 'yes', work around this with a 'while' loop
-RUN yes | ${ANDROID_SDK}/tools/bin/sdkmanager --verbose "emulator" "platforms;${ANDROID_TARGET}" "system-images;${ANDROID_TARGET};default;armeabi-v7a" "system-images;${ANDROID_TARGET};default;x86_64"
-
 # Accept licenses
 RUN yes | ${ANDROID_SDK}/tools/bin/sdkmanager --licenses
-RUN echo no | ${ANDROID_SDK}/tools/bin/avdmanager create avd --force --name test --package "system-images;${ANDROID_TARGET};default;${ANDROID_ABI}" --abi ${ANDROID_ABI}
+
+# Install platform tools
+RUN yes | ${ANDROID_SDK}/tools/bin/sdkmanager --verbose "platforms;${ANDROID_TARGET}"
+
+# Disable emulator for now
+# RUN yes | ${ANDROID_SDK}/tools/bin/sdkmanager --verbose "emulator"
+# RUN yes | ${ANDROID_SDK}/tools/bin/sdkmanager --verbose "system-images;${ANDROID_TARGET};default;armeabi-v7a"
+# RUN yes | ${ANDROID_SDK}/tools/bin/sdkmanager --verbose "system-images;${ANDROID_TARGET};default;x86_64"
+# RUN echo no | ${ANDROID_SDK}/tools/bin/avdmanager create avd --force --name test --package "system-images;${ANDROID_TARGET};default;${ANDROID_ABI}" --abi ${ANDROID_ABI}
 
 ADD build_android.sh /build_android.sh
