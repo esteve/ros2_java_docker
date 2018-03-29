@@ -8,14 +8,14 @@ ENV LANG en_US.UTF-8
 RUN apt-get install -y --no-install-recommends lsb-release software-properties-common
 RUN apt-get install -y --no-install-recommends apt-transport-https
 RUN echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -cs` main" | tee /etc/apt/sources.list.d/ros-latest.list
-RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 421C365BD9FF1F717815A3895523BAEEB01FA116
+RUN apt-key adv --keyserver hkps.pool.sks-keyservers.net --recv-keys 421C365BD9FF1F717815A3895523BAEEB01FA116
 RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu `lsb_release -cs` main" | tee /etc/apt/sources.list.d/gazebo-latest.list
-RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
+RUN apt-key adv --keyserver hkps.pool.sks-keyservers.net --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
 RUN add-apt-repository ppa:webupd8team/java
 RUN add-apt-repository ppa:cwchien/gradle
 #RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
 RUN echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" | tee /etc/apt/sources.list.d/dotnetdev.list
-RUN apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893
+RUN apt-key adv --keyserver hkps.pool.sks-keyservers.net --recv-keys 417A0893
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends git wget
 RUN apt-get install -y --no-install-recommends build-essential cppcheck cmake libopencv-dev python-empy python3-dev python3-empy python3-nose python3-pip python3-setuptools python3-vcstool
