@@ -1,0 +1,8 @@
+FROM ubuntu:bionic
+MAITAINER esteve@apache.org
+
+FROM esteve/travis:ros2
+
+FROM esteve/travis:common-java
+
+FROM esteve/travis:jre

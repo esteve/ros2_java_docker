@@ -1,0 +1,17 @@
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends \
+    libopencv-dev \
+    libpcre3-dev
+RUN apt-get install -y --no-install-recommends \
+    libasio-dev \
+    libtinyxml2-dev \
+    openjdk-8-jdk
+# dependencies for testing
+RUN apt-get install -y --no-install-recommends \
+    clang-format \
+    pydocstyle \
+    pyflakes \
+    python3-coverage \
+    python3-mock \
+    python3-pep8 \
+    uncrustify

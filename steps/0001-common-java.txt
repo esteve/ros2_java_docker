@@ -1,0 +1,12 @@
+RUN add-apt-repository ppa:cwchien/gradle
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends \
+    gradle \
+    openjdk-8-jdk-headless
+RUN mkdir -p /root/.gradle
+RUN echo org.gradle.daemon=true | tee /root/.gradle/gradle.properties
+RUN echo org.gradle.jvmargs=-Xmx2048M | tee -a /root/.gradle/gradle.properties
+RUN echo "buildscript { repositories { jcenter() }; dependencies { classpath 'com.android.tools.build:gradle:2.2.0+' } }" | tee /tmp/dummy.gradle
+RUN gradle -b /tmp/dummy.gradle
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV PATH=$PATH:${JAVA_HOME}/bin:${JAVA_HOME}/jre/bin
